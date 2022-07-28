@@ -18,7 +18,7 @@ namespace PFE
 		{
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
-			Application.Run(new DahboredAdmin());
+			Application.Run(new Login());
 		}
 	}
 }

@@ -17,7 +17,7 @@ namespace PFE
 	public partial class Login : Form
 	{
 		connection con = new connection();
-		string id, username, password, firstname, lastname, roles;
+		public static string id, firstname, password, lastname, roles,image;
 		public Login()
 		{
 			this.MaximumSize = new System.Drawing.Size(1200, 750);
@@ -29,6 +29,11 @@ namespace PFE
 		private void pass_TextChanged(object sender, EventArgs e)
 		{
 			pass.PasswordChar = '*';
+
+		}
+
+		private void pictureBox1_Click(object sender, EventArgs e)
+		{
 
 		}
 
@@ -65,11 +70,18 @@ namespace PFE
 					MySqlDataReader reader = cmd.ExecuteReader();
 					if (reader.Read())
 					{
-						firstname = reader["roles"].ToString();
-						if(firstname=="Admin")
+						roles = reader["roles"].ToString();
+						firstname = reader["name"].ToString();
+						lastname = reader["lastname"].ToString();
+						password = reader["password"].ToString();
+						image = reader["image"].ToString();
+						id = reader["idusers"].ToString();
+
+
+						if (roles=="Admin")
 						{
 							MessageBox.Show("Successfully Sign In!", "VINSMOKE MJ", MessageBoxButtons.OK, MessageBoxIcon.Information);
-							 DahboredAdmin dash=new DahboredAdmin();
+							 DahboredAdmin dash=new DahboredAdmin(image,firstname,id);
 							this.Hide();
 							dash.Show();
 						

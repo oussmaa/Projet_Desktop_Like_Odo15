@@ -212,7 +212,7 @@ namespace PFE.Users
 			// pictureBox4
 			// 
 			this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
-			this.pictureBox4.Location = new System.Drawing.Point(1228, 9);
+			this.pictureBox4.Location = new System.Drawing.Point(1157, 9);
 			this.pictureBox4.Name = "pictureBox4";
 			this.pictureBox4.Size = new System.Drawing.Size(46, 32);
 			this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -222,7 +222,7 @@ namespace PFE.Users
 			// 
 			// mainpanel
 			// 
-			this.mainpanel.BackColor = System.Drawing.Color.Red;
+			this.mainpanel.BackColor = System.Drawing.Color.White;
 			this.mainpanel.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.mainpanel.Location = new System.Drawing.Point(309, 0);
 			this.mainpanel.MaximumSize = new System.Drawing.Size(1700, 1000);

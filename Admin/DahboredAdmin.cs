@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,15 +14,26 @@ namespace PFE.Admin
 {
 	public partial class DahboredAdmin : Form
 	{
-		public DahboredAdmin()
+		public static DahboredAdmin instance;
+		public Label label;
+		public PictureBox Image ;
+		public string IdUsers;
+ 
+		public DahboredAdmin(string image, string name,string id)
 		{
 			this.MaximumSize = new System.Drawing.Size(1700, 1100);
 			this.MinimumSize = new System.Drawing.Size(1700, 1100);
 			this.StartPosition = FormStartPosition.CenterScreen;
- 
+			this.IdUsers = id;
 
 
 			InitializeComponent();
+			this.Photo.ImageLocation = @"C:\Users\oussama.ghariani\Desktop\Study\PFE\bin\Debug\images\" + image;
+			this.label2.Text = name;
+ 			instance = this;
+			label = label2;
+			this.Image = this.Photo;
+ 
 		}
 		public void loadform(object Form)
 		{
@@ -78,7 +90,12 @@ namespace PFE.Admin
 
 		private void button6_Click_1(object sender, EventArgs e)
 		{
-			loadform(new Profile());
+
+
+
+			loadform(new Profile(this.IdUsers));
+	 
+			
 		}
 
 		private void pictureBox1_Click_1(object sender, EventArgs e)
@@ -89,7 +106,7 @@ namespace PFE.Admin
 
 		private void button3_Click(object sender, EventArgs e)
 		{
-			loadform(new Dashbored());
+			//loadform(new Dashbored());
 		}
 
 		private void panel2_Paint(object sender, PaintEventArgs e)
@@ -103,6 +120,37 @@ namespace PFE.Admin
 		}
 
 		private void chart1_Click(object sender, EventArgs e)
+		{
+
+		}
+
+		private void Photo_Click(object sender, EventArgs e)
+		{
+			try
+			{
+				OpenFileDialog dialog = new OpenFileDialog();
+				if (dialog.ShowDialog() == DialogResult.OK)
+				{
+					Photo.ImageLocation = dialog.FileName.ToString();
+					MessageBox.Show(dialog.FileName.ToString());
+					string path = Path.Combine(@"images\");
+					if (!Directory.Exists(path))
+					{
+						Directory.CreateDirectory(path);
+					}
+					var filename = System.IO.Path.GetFileName(dialog.FileName);
+					path = path + filename;
+					File.Copy(dialog.FileName, path);
+					MessageBox.Show(filename);
+				}
+			}
+			catch (Exception ex)
+			{
+
+			}
+		}
+
+		private void panel1_Paint(object sender, PaintEventArgs e)
 		{
 
 		}

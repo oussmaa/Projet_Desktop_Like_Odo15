@@ -34,3 +34,5 @@ C:\Users\oussama.ghariani\Desktop\Study\PFE\obj\Debug\PFE.Users.GestionLabel.res
 C:\Users\oussama.ghariani\Desktop\Study\PFE\obj\Debug\PFE.Users.GestionSaller.resources
 C:\Users\oussama.ghariani\Desktop\Study\PFE\obj\Debug\PFE.Users.Profile.resources
 C:\Users\oussama.ghariani\Desktop\Study\PFE\obj\Debug\PFE.Users.Dashbored.resources
+C:\Users\oussama.ghariani\Desktop\Study\PFE\obj\Debug\PFE.Admin.UpdateUser.resources
+C:\Users\oussama.ghariani\Desktop\Study\PFE\obj\Debug\PFE.Admin.test.resources
