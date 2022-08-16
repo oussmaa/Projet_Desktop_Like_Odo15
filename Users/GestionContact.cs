@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -18,11 +19,82 @@ namespace PFE.Users
 			this.MinimumSize = new System.Drawing.Size(1270, 820);
 			this.StartPosition = FormStartPosition.CenterScreen;
 			InitializeComponent();
+			LoadData();
 		}
+		public void LoadData()
+		{
+			try
+			{
 
+				MySqlConnection con = new MySqlConnection("datasource= localhost; database=test;port=3306; username = root; password= 123456789CA*"); //open connection
+				con.Open();
+				string sql = "SELECT * FROM contact ";
+				MySqlCommand cmd = new MySqlCommand(sql, con);
+				MySqlDataReader reader = cmd.ExecuteReader();
+
+				while (reader.Read())
+				{
+
+
+
+					ListViewItem list = new ListViewItem(reader["idContact"].ToString());
+
+					list.SubItems.Add(reader["name"].ToString());
+					list.SubItems.Add(reader["email"].ToString());
+					list.SubItems.Add(reader["phone"].ToString());
+					list.SubItems.Add(reader["adress"].ToString());
+					list.SubItems.Add(reader["remark"].ToString());
+ 					listView1.Items.Add(list);
+
+				}
+
+				reader.Close();
+				cmd.Dispose();
+				con.Close();
+			}
+
+			catch
+			{
+
+				MessageBox.Show("Connection Error", "Information");
+			}
+		}
 		private void GestionContact_Load(object sender, EventArgs e)
 		{
 
+		}
+
+		private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+		{
+
+		}
+
+		private void button1_Click(object sender, EventArgs e)
+		{
+			if (namee.Text != "" && adrr.Text != "" && em.Text != "" && remk.Text != "" && ph.Text != "")
+			{
+				MySqlConnection con = new MySqlConnection("datasource= localhost; database=test;port=3306; username = root; password= 123456789CA*"); //open connection
+				con.Open();
+				string SQLcommand = "INSERT INTO contact(name, email, phone, adress,reamrk) VALUES(?name, ?email, ?phone, ?adress,?reamrk);";
+				MySqlCommand bazaUkaz = new MySqlCommand(SQLcommand, con);
+				bazaUkaz.Parameters.Add(new MySqlParameter("?name", namee.Text));
+				bazaUkaz.Parameters.Add(new MySqlParameter("?email", em.Text));
+				bazaUkaz.Parameters.Add(new MySqlParameter("?phone", ph.Text));
+				bazaUkaz.Parameters.Add(new MySqlParameter("?adress", adrr.Text));
+				bazaUkaz.Parameters.Add(new MySqlParameter("?reamrk", remk.Text));
+				bazaUkaz.ExecuteNonQuery();
+
+				listView1.Items.Clear();
+				LoadData();
+
+				MessageBox.Show("Add Successfully", "Information");
+				con.Close();
+			}
+			else
+			{
+				MessageBox.Show("Value is missed", "Information");
+
+			}
 		}
 	}
 }

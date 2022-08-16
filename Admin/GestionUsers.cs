@@ -58,8 +58,7 @@ namespace PFE.Admin
 				bazaUkaz.Parameters.Add(new MySqlParameter("?fn", lastname.Text));
 				bazaUkaz.Parameters.Add(new MySqlParameter("?ln", roles.Text));
 				bazaUkaz.Parameters.Add(new MySqlParameter("?pw", password.Text));
- 
-
+  
 				bazaUkaz.ExecuteNonQuery();
 
 				listView.Items.Clear();
@@ -158,6 +157,11 @@ namespace PFE.Admin
 				MessageBox.Show("Please select user", "Information");
 
 			}
+
+		}
+
+		private void roles_SelectedIndexChanged(object sender, EventArgs e)
+		{
 
 		}
 	}

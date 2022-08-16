@@ -43,9 +43,9 @@ namespace PFE.Admin
 			this.Last_Name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.Role = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.Passwordd = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.id = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.delete = new System.Windows.Forms.Button();
 			this.update = new System.Windows.Forms.Button();
-			this.id = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.SuspendLayout();
 			// 
 			// label1
@@ -138,6 +138,7 @@ namespace PFE.Admin
 			this.roles.Name = "roles";
 			this.roles.Size = new System.Drawing.Size(121, 24);
 			this.roles.TabIndex = 9;
+			this.roles.SelectedIndexChanged += new System.EventHandler(this.roles_SelectedIndexChanged);
 			// 
 			// listView
 			// 
@@ -158,27 +159,28 @@ namespace PFE.Admin
 			// 
 			// Namee
 			// 
-			this.Namee.DisplayIndex = 0;
 			this.Namee.Text = "Name";
 			this.Namee.Width = 213;
 			// 
 			// Last_Name
 			// 
-			this.Last_Name.DisplayIndex = 1;
 			this.Last_Name.Text = "Last Name";
 			this.Last_Name.Width = 187;
 			// 
 			// Role
 			// 
-			this.Role.DisplayIndex = 2;
 			this.Role.Text = "Roles";
 			this.Role.Width = 75;
 			// 
 			// Passwordd
 			// 
-			this.Passwordd.DisplayIndex = 3;
 			this.Passwordd.Text = "Password";
 			this.Passwordd.Width = 170;
+			// 
+			// id
+			// 
+			this.id.Text = "Id";
+			this.id.Width = 134;
 			// 
 			// delete
 			// 
@@ -205,12 +207,6 @@ namespace PFE.Admin
 			this.update.Text = "Update";
 			this.update.UseVisualStyleBackColor = false;
 			this.update.Click += new System.EventHandler(this.update_Click);
-			// 
-			// id
-			// 
-			this.id.DisplayIndex = 4;
-			this.id.Text = "Id";
-			this.id.Width = 134;
 			// 
 			// GestionUsers
 			// 

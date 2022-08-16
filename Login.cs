@@ -81,7 +81,7 @@ namespace PFE
 						if (roles=="Admin")
 						{
 							MessageBox.Show("Successfully Sign In!", "VINSMOKE MJ", MessageBoxButtons.OK, MessageBoxIcon.Information);
-							 DahboredAdmin dash=new DahboredAdmin(image,firstname,id);
+							 DahboredAdmin dash=new DahboredAdmin(image,firstname,id,roles);
 							this.Hide();
 							dash.Show();
 						
@@ -89,7 +89,7 @@ namespace PFE
 						else
 						{
 							MessageBox.Show("Successfully Sign In!", "VINSMOKE MJ", MessageBoxButtons.OK, MessageBoxIcon.Information);
-							DahboredUser dash = new DahboredUser();
+							DahboredUser dash = new DahboredUser(image, firstname, id,roles);
 							this.Hide();
 							dash.Show();
 							

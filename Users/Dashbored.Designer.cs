@@ -32,6 +32,7 @@ namespace PFE.Users
 			System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
 			System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
 			System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+			System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
 			System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
 			System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
 			System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
@@ -47,15 +48,22 @@ namespace PFE.Users
 			this.chart1.ChartAreas.Add(chartArea1);
 			legend1.Name = "Legend1";
 			this.chart1.Legends.Add(legend1);
-			this.chart1.Location = new System.Drawing.Point(0, 0);
+			this.chart1.Location = new System.Drawing.Point(68, 61);
 			this.chart1.Name = "chart1";
+			this.chart1.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.None;
 			series1.ChartArea = "ChartArea1";
+			series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.StackedColumn;
+			series1.Color = System.Drawing.Color.DodgerBlue;
 			series1.Legend = "Legend1";
-			series1.Name = "Series1";
+			series1.Name = "Users";
 			this.chart1.Series.Add(series1);
-			this.chart1.Size = new System.Drawing.Size(300, 300);
+			this.chart1.Size = new System.Drawing.Size(810, 317);
 			this.chart1.TabIndex = 0;
-			this.chart1.Text = "chart1";
+			this.chart1.Text = "UserChart";
+			title1.Name = "Users";
+			title1.Text = "Users";
+			this.chart1.Titles.Add(title1);
+			this.chart1.Click += new System.EventHandler(this.chart1_Click);
 			// 
 			// chart2
 			// 
@@ -64,7 +72,7 @@ namespace PFE.Users
 			this.chart2.ChartAreas.Add(chartArea2);
 			legend2.Name = "Legend1";
 			this.chart2.Legends.Add(legend2);
-			this.chart2.Location = new System.Drawing.Point(306, 0);
+			this.chart2.Location = new System.Drawing.Point(68, 457);
 			this.chart2.Name = "chart2";
 			this.chart2.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Excel;
 			series2.ChartArea = "ChartArea1";
@@ -72,7 +80,7 @@ namespace PFE.Users
 			series2.Legend = "Legend1";
 			series2.Name = "Series1";
 			this.chart2.Series.Add(series2);
-			this.chart2.Size = new System.Drawing.Size(300, 300);
+			this.chart2.Size = new System.Drawing.Size(837, 300);
 			this.chart2.TabIndex = 1;
 			this.chart2.Text = "chart2";
 			this.chart2.Click += new System.EventHandler(this.chart2_Click);
@@ -81,9 +89,11 @@ namespace PFE.Users
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(800, 450);
+			this.BackColor = System.Drawing.Color.White;
+			this.ClientSize = new System.Drawing.Size(992, 859);
 			this.Controls.Add(this.chart2);
 			this.Controls.Add(this.chart1);
+			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
 			this.Name = "Dashbored";
 			this.Text = "Dashbored";
 			this.Load += new System.EventHandler(this.Dashbored_Load);

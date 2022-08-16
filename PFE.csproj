@@ -54,6 +54,12 @@
     <Compile Include="Admin\DahboredAdmin.Designer.cs">
       <DependentUpon>DahboredAdmin.cs</DependentUpon>
     </Compile>
+    <Compile Include="Admin\Gestionattribute.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Admin\Gestionattribute.Designer.cs">
+      <DependentUpon>Gestionattribute.cs</DependentUpon>
+    </Compile>
     <Compile Include="Admin\GestionUsers.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -79,6 +85,10 @@
     <Compile Include="Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
+    <Compile Include="Model\Adress.cs" />
+    <Compile Include="Model\Attributee.cs" />
+    <Compile Include="Model\Commercialpartner.cs" />
+    <Compile Include="Model\Labele.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -136,6 +146,12 @@
     <Compile Include="Users\GestionSaller.Designer.cs">
       <DependentUpon>GestionSaller.cs</DependentUpon>
     </Compile>
+    <Compile Include="Users\ListClient.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Users\ListClient.Designer.cs">
+      <DependentUpon>ListClient.cs</DependentUpon>
+    </Compile>
     <Compile Include="Users\Profile.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -144,6 +160,9 @@
     </Compile>
     <EmbeddedResource Include="Admin\DahboredAdmin.resx">
       <DependentUpon>DahboredAdmin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\Gestionattribute.resx">
+      <DependentUpon>Gestionattribute.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Admin\GestionUsers.resx">
       <DependentUpon>GestionUsers.cs</DependentUpon>
@@ -192,6 +211,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Users\GestionSaller.resx">
       <DependentUpon>GestionSaller.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Users\ListClient.resx">
+      <DependentUpon>ListClient.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Users\Profile.resx">
       <DependentUpon>Profile.cs</DependentUpon>

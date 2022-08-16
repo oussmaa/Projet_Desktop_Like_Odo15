@@ -18,11 +18,13 @@ namespace PFE.Admin
 		public Label label;
 		public PictureBox Image ;
 		public string IdUsers;
+		public string Roles;
  
-		public DahboredAdmin(string image, string name,string id)
+		public DahboredAdmin(string image, string name,string id,string roles)
 		{
-			this.MaximumSize = new System.Drawing.Size(1700, 1100);
-			this.MinimumSize = new System.Drawing.Size(1700, 1100);
+			this.Roles = roles;
+			this.MaximumSize = new System.Drawing.Size(1700, 1020);
+			this.MinimumSize = new System.Drawing.Size(1700, 1020);
 			this.StartPosition = FormStartPosition.CenterScreen;
 			this.IdUsers = id;
 
@@ -33,7 +35,7 @@ namespace PFE.Admin
  			instance = this;
 			label = label2;
 			this.Image = this.Photo;
- 
+			loadform(new Dashbored());
 		}
 		public void loadform(object Form)
 		{
@@ -72,7 +74,7 @@ namespace PFE.Admin
 
 		private void button2_Click(object sender, EventArgs e)
 		{
-			loadform(new GestionClient());
+			loadform(new ListClient());
 		}
 
 		private void button1_Click(object sender, EventArgs e)
@@ -93,7 +95,7 @@ namespace PFE.Admin
 
 
 
-			loadform(new Profile(this.IdUsers));
+			loadform(new Profile(this.IdUsers,Roles));
 	 
 			
 		}
@@ -106,7 +108,7 @@ namespace PFE.Admin
 
 		private void button3_Click(object sender, EventArgs e)
 		{
-			//loadform(new Dashbored());
+			 loadform(new Dashbored());
 		}
 
 		private void panel2_Paint(object sender, PaintEventArgs e)
@@ -151,6 +153,49 @@ namespace PFE.Admin
 		}
 
 		private void panel1_Paint(object sender, PaintEventArgs e)
+		{
+
+		}
+
+		private void button4_Click(object sender, EventArgs e)
+		{
+			loadform(new Gestionattribute());
+		}
+
+		private void pictureBox8_Click(object sender, EventArgs e)
+		{
+			this.Hide();
+			this.Close();
+			Login login = new Login();
+			login.Show();
+		}
+
+		private void pictureBox3_Click_1(object sender, EventArgs e)
+		{
+
+		}
+
+		private void button5_Click(object sender, EventArgs e)
+		{
+			loadform(new GestionClient());
+		}
+
+		private void label6_Click(object sender, EventArgs e)
+		{
+
+		}
+
+		private void label4_Click(object sender, EventArgs e)
+		{
+
+		}
+
+		private void label3_Click(object sender, EventArgs e)
+		{
+
+		}
+
+		private void pictureBox7_Click(object sender, EventArgs e)
 		{
 
 		}

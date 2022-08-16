@@ -36,3 +36,5 @@ C:\Users\oussama.ghariani\Desktop\Study\PFE\obj\Debug\PFE.Users.Profile.resource
 C:\Users\oussama.ghariani\Desktop\Study\PFE\obj\Debug\PFE.Users.Dashbored.resources
 C:\Users\oussama.ghariani\Desktop\Study\PFE\obj\Debug\PFE.Admin.UpdateUser.resources
 C:\Users\oussama.ghariani\Desktop\Study\PFE\obj\Debug\PFE.Admin.test.resources
+C:\Users\oussama.ghariani\Desktop\Study\PFE\obj\Debug\PFE.Admin.Gestionattribute.resources
+C:\Users\oussama.ghariani\Desktop\Study\PFE\obj\Debug\PFE.Users.ListClient.resources

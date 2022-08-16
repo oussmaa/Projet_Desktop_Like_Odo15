@@ -12,13 +12,27 @@ namespace PFE.Users
 {
 	public partial class DahboredUser : Form
 	{
-		public DahboredUser()
+		public static DahboredUser instance;
+		public Label label;
+		public PictureBox Image;
+		public string IdUsers;
+		public string Roles;
+
+
+		public DahboredUser(string image, string name, string id,string roles)
 		{
+			this.Roles = roles;
 			this.MaximumSize = new System.Drawing.Size(1700, 1100);
 			this.MinimumSize = new System.Drawing.Size(1700, 1100);
 			this.StartPosition = FormStartPosition.CenterScreen;
-
+			this.IdUsers = id;
 			InitializeComponent();
+			this.Photo.ImageLocation = @"C:\Users\oussama.ghariani\Desktop\Study\PFE\bin\Debug\images\" + image;
+			this.label2.Text = name;
+			instance = this;
+			label = label2;
+			this.Image = this.Photo;
+			loadform(new Dashbored());
 		}
 
 		private void DahboredUser_Load(object sender, EventArgs e)
@@ -70,7 +84,7 @@ namespace PFE.Users
 
 		private void button6_Click(object sender, EventArgs e)
 		{
-			//loadform(new Profile());
+			 loadform(new Profile(this.IdUsers,Roles));
 		}
 
 		private void button5_Click(object sender, EventArgs e)
@@ -101,6 +115,24 @@ namespace PFE.Users
 		private void panel2_Paint(object sender, PaintEventArgs e)
 		{
 
+		}
+
+		private void label4_Click(object sender, EventArgs e)
+		{
+
+		}
+
+		private void pictureBox8_Click(object sender, EventArgs e)
+		{
+			this.Hide();
+			this.Close();
+			Login login = new Login();
+			login.Show();
+		}
+
+		private void button7_Click(object sender, EventArgs e)
+		{
+			loadform(new GestionAdress());
 		}
 	}
 }

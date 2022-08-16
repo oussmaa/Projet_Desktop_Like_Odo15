@@ -16,18 +16,27 @@ namespace PFE.Users
 	public partial class Profile : Form
 	{
 		public string Id;
-		public Profile(string id)
+		public string Roles;
+		public string Image;
+
+		public Profile(string id,string Roles)
 		{
+			this.Roles = Roles;
 			this.Id = id;
 			this.MaximumSize = new System.Drawing.Size(1270, 820);
 			this.MinimumSize = new System.Drawing.Size(1270, 820);
 			this.StartPosition = FormStartPosition.CenterScreen;
+
 			InitializeComponent();
+			GetUserById();
+			this.imageprofile.ImageLocation = @"C:\Users\oussama.ghariani\Desktop\Study\PFE\bin\Debug\images\" + Image;
+
 		}
 
 		private void Profile_Load(object sender, EventArgs e)
 		{
-
+			MySqlConnection con = new MySqlConnection("datasource= localhost; database=test;port=3306; username = root; password= 123456789CA*"); //open connection
+			con.Open();
 		}
 
 		private void textBox3_TextChanged(object sender, EventArgs e)
@@ -59,6 +68,32 @@ namespace PFE.Users
 		{
 
 		}
+		public void GetUserById()
+		{
+			MySqlConnection con = new MySqlConnection("datasource= localhost; database=test;port=3306; username = root; password= 123456789CA*"); //open connection
+			con.Open();
+			string sql = "SELECT * FROM users where idusers=" + Id + "";
+			MySqlCommand cmd = new MySqlCommand(sql, con);
+			try
+			{
+				MySqlDataReader reader = cmd.ExecuteReader();
+
+				while (reader.Read())
+				{
+
+					this.Image = reader["Image"].ToString();
+
+
+
+				}
+			}
+			catch(Exception ex)
+			{
+				MessageBox.Show(ex.Message);
+			}
+	
+
+		}
 
 		private void pictureBox2_Click(object sender, EventArgs e)
 		{
@@ -74,11 +109,22 @@ namespace PFE.Users
 					{
 						Directory.CreateDirectory(path);
 					}
+
 					var filename = System.IO.Path.GetFileName(dialog.FileName);
 					path = path + filename;
-					File.Copy(dialog.FileName, path);
-					 
-					 DahboredAdmin.instance.Image.ImageLocation = @"C:\Users\oussama.ghariani\Desktop\Study\PFE\bin\Debug\images\" + filename;
+					File.Copy(dialog.FileName, path, true);
+					 if(Roles=="Admin")
+					{
+						DahboredAdmin.instance.Image.ImageLocation = @"C:\Users\oussama.ghariani\Desktop\Study\PFE\bin\Debug\images\" + filename;
+
+					}
+					else
+					{
+						DahboredUser.instance.Image.ImageLocation = @"C:\Users\oussama.ghariani\Desktop\Study\PFE\bin\Debug\images\" + filename;
+
+					}
+
+
 
 					string query = "UPDATE users SET   image =@image  WHERE idusers =@id";
 					MySqlConnection con = new MySqlConnection("datasource= localhost; database=test;port=3306; username = root; password= 123456789CA*"); //open connection
@@ -91,7 +137,20 @@ namespace PFE.Users
 					cmd.Connection = con;
 					cmd.ExecuteNonQuery();
 					con.Close();
-					DahboredAdmin.instance.label.Text = name.Text;
+					if(name.Text!="")
+					{
+						if (Roles == "Admin")
+						{
+							DahboredAdmin.instance.label.Text = name.Text;
+
+						}
+						else
+						{
+							DahboredUser.instance.label.Text = name.Text;
+
+						}
+					}
+		
 					MessageBox.Show("UPDATE Successfully", "Information");
 				}
 
@@ -120,7 +179,16 @@ namespace PFE.Users
 				cmd.Connection = con;
 				cmd.ExecuteNonQuery();
 				con.Close();
-				DahboredAdmin.instance.label.Text = name.Text;
+				if (Roles == "Admin")
+				{
+					DahboredAdmin.instance.label.Text = name.Text;
+
+				}
+				else
+				{
+					DahboredUser.instance.label.Text = name.Text;
+
+				}
 				MessageBox.Show("UPDATE Successfully", "Information");
 				 
 
