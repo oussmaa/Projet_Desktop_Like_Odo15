@@ -31,8 +31,14 @@ namespace PFE.Users
 		{
 			System.Windows.Forms.ColumnHeader k;
 			this.listView1 = new System.Windows.Forms.ListView();
+			this.update = new System.Windows.Forms.Button();
 			k = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.SuspendLayout();
+			// 
+			// k
+			// 
+			k.Text = "";
+			k.Width = 0;
 			// 
 			// listView1
 			// 
@@ -53,10 +59,18 @@ namespace PFE.Users
 			this.listView1.View = System.Windows.Forms.View.Details;
 			this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
 			// 
-			// k
+			// update
 			// 
-			k.Text = "";
-			k.Width = 0;
+			this.update.BackColor = System.Drawing.Color.White;
+			this.update.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.update.ForeColor = System.Drawing.Color.Blue;
+			this.update.Location = new System.Drawing.Point(1060, 23);
+			this.update.Name = "update";
+			this.update.Size = new System.Drawing.Size(115, 32);
+			this.update.TabIndex = 190;
+			this.update.Text = "Update";
+			this.update.UseVisualStyleBackColor = false;
+			this.update.Click += new System.EventHandler(this.update_Click);
 			// 
 			// ListClient
 			// 
@@ -64,6 +78,7 @@ namespace PFE.Users
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.White;
 			this.ClientSize = new System.Drawing.Size(1270, 820);
+			this.Controls.Add(this.update);
 			this.Controls.Add(this.listView1);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
 			this.Name = "ListClient";
@@ -76,5 +91,6 @@ namespace PFE.Users
 		#endregion
 
 		private System.Windows.Forms.ListView listView1;
+		private System.Windows.Forms.Button update;
 	}
 }

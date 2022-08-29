@@ -52,13 +52,14 @@ namespace PFE.Admin
 			{
 				MySqlConnection con = new MySqlConnection("datasource= localhost; database=test;port=3306; username = root; password= 123456789CA*"); //open connection
 				con.Open();
-				string SQLcommand = "INSERT INTO Users(name, lastname, roles, password) VALUES(?un, ?fn, ?ln, ?pw);";
+				string SQLcommand = "INSERT INTO Users(name, lastname, roles, password,Image) VALUES(?un, ?fn, ?ln, ?pw,?Image);";
 				MySqlCommand bazaUkaz = new MySqlCommand(SQLcommand, con);
 				bazaUkaz.Parameters.Add(new MySqlParameter("?un", name.Text));
 				bazaUkaz.Parameters.Add(new MySqlParameter("?fn", lastname.Text));
 				bazaUkaz.Parameters.Add(new MySqlParameter("?ln", roles.Text));
 				bazaUkaz.Parameters.Add(new MySqlParameter("?pw", password.Text));
-  
+				bazaUkaz.Parameters.Add(new MySqlParameter("?Image","img.png"));
+
 				bazaUkaz.ExecuteNonQuery();
 
 				listView.Items.Clear();

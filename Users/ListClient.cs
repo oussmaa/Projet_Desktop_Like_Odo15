@@ -13,6 +13,8 @@ namespace PFE.Users
 {
 	public partial class ListClient : Form
 	{
+
+		public static ListClient instance;
 		public List<string> listtColumnName = new List<string>();
 
 		public ListClient()
@@ -23,6 +25,7 @@ namespace PFE.Users
 			InitializeComponent();
 			GetColumnAndData();
 			GetValueDataClumn();
+			instance = this;
 		}
 
 		private void ListClient_Load(object sender, EventArgs e)
@@ -31,6 +34,7 @@ namespace PFE.Users
 		}
 		public void GetValueDataClumn()
 		{
+			listView1.Items.Clear();
 			try
 			{
 
@@ -106,9 +110,27 @@ namespace PFE.Users
 			}
 
 		}
+ 
+
+		private void update_Click(object sender, EventArgs e)
+		{
+			if (listView1.SelectedItems.Count > 0)
+			{
+				Form detaille = new DetailleClient(listView1.SelectedItems[0]);
+				detaille.Show();
+			}
+			else
+			{
+				MessageBox.Show("Please select user", "Information");
+
+			}
+				//MessageBox.Show(listView1.SelectedItems[0].SubItems[1].Text);
+			}
+
 		private void listView1_SelectedIndexChanged(object sender, EventArgs e)
 		{
 
 		}
 	}
+ 
 }

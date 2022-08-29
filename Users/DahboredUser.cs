@@ -32,7 +32,7 @@ namespace PFE.Users
 			instance = this;
 			label = label2;
 			this.Image = this.Photo;
-			loadform(new Dashbored());
+			loadform(new ListClient());
 		}
 
 		private void DahboredUser_Load(object sender, EventArgs e)
@@ -133,6 +133,11 @@ namespace PFE.Users
 		private void button7_Click(object sender, EventArgs e)
 		{
 			loadform(new GestionAdress());
+		}
+
+		private void button1_Click_1(object sender, EventArgs e)
+		{
+			loadform(new ListClient());
 		}
 	}
 }

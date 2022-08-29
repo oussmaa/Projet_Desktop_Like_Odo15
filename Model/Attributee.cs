@@ -10,6 +10,7 @@ namespace PFE.Model
 	public	class Attributee
 	{
 		public long Id { get; set; }
+		public string Idstr { get; set; }
 		public string Name { get; set; }
 		public string Type { get; set; }
 
@@ -23,6 +24,13 @@ namespace PFE.Model
 			this.Name = name;
 			this.Type = type;
  
+		}
+		public Attributee(string id, string name, string type)
+		{
+			this.Idstr = id;
+			this.Name = name;
+			this.Type = type;
+
 		}
 	}
 }

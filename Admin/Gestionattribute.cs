@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using PFE.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,13 +14,21 @@ namespace PFE.Admin
 {
 	public partial class Gestionattribute : Form
 	{
+		public static Gestionattribute instance;
 		public Gestionattribute()
 		{
 			this.MaximumSize = new System.Drawing.Size(1270, 820);
 			this.MinimumSize = new System.Drawing.Size(1270, 820);
 			this.StartPosition = FormStartPosition.CenterScreen;
 			InitializeComponent();
+			instance = this;
 			LoadData();
+		}
+		public void ListViewClear()
+		{
+			listView1.Items.Clear();
+			LoadData();
+
 		}
 		public void LoadData()
 		{
@@ -71,13 +80,13 @@ namespace PFE.Admin
 				con.Open();
 				string typecolumn = " varchar(255) ";
 				 if(type.Text=="Date")
-				{
+				 {
 					typecolumn = " Date ";
-				}
+				 }
 				 else if (type.Text == "INT")
-				{
+				 {
 					typecolumn = " INT ";
-				}
+				 }
 				 
 					string SqL = "ALTER TABLE commercialpartner ADD " + name.Text +""+  typecolumn +"";
 				string SQLcommand = "INSERT INTO supp_information(name, type) VALUES(?name, ?type);";
@@ -127,6 +136,21 @@ namespace PFE.Admin
 		private void listView1_SelectedIndexChanged(object sender, EventArgs e)
 		{
 
+		}
+
+		private void update_Click(object sender, EventArgs e)
+		{
+			if (listView1.SelectedItems.Count > 0)
+			{
+
+				Form F = new UpdateAttributee(new Model.Attributee(listView1.SelectedItems[0].SubItems[0].Text, listView1.SelectedItems[0].SubItems[1].Text, listView1.SelectedItems[0].SubItems[2].Text));
+				F.Show();
+			}
+			else
+			{
+				MessageBox.Show("Please select Attributee", "Information");
+
+			}
 		}
 	}
 }

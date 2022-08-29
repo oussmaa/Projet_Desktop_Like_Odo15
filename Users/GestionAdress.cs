@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using PFE.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,6 +14,7 @@ namespace PFE.Users
 {
 	public partial class GestionAdress : Form
 	{
+		public List<Adress> listtAdress = new List<Adress>();
 		public GestionAdress()
 		{
 			this.MaximumSize = new System.Drawing.Size(1270, 820);
@@ -34,16 +36,23 @@ namespace PFE.Users
 
 				while (reader.Read())
 				{
+					Adress add = new Adress(reader["idadress"].ToString(), reader["name"].ToString(), reader["latitude"].ToString(), reader["longtitude"].ToString());
+ 
+					listtAdress.Add(add);
 
 
+				}
+				List<Adress> listtAdress2 = new List<Adress>();
+				listtAdress2 = listtAdress.GroupBy(add => add.Name).Select(x => x.First()).ToList();
 
-					ListViewItem list = new ListViewItem(reader["idadress"].ToString());
-					list.SubItems.Add(reader["name"].ToString());
-					list.SubItems.Add(reader["latitude"].ToString());
-					list.SubItems.Add(reader["longtitude"].ToString());
+				foreach (Adress add in listtAdress2)
+				{
+					ListViewItem list = new ListViewItem(add.Id);
+					list.SubItems.Add(add.Name);
+					list.SubItems.Add(add.latitude);
+					list.SubItems.Add(add.longtitude);
 
 					listView1.Items.Add(list);
-
 				}
 
 				reader.Close();

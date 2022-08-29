@@ -47,7 +47,7 @@ namespace PFE.Users
 			// 
 			this.label1.AutoSize = true;
 			this.label1.ForeColor = System.Drawing.Color.Blue;
-			this.label1.Location = new System.Drawing.Point(144, 130);
+			this.label1.Location = new System.Drawing.Point(233, 178);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(45, 17);
 			this.label1.TabIndex = 0;
@@ -57,7 +57,7 @@ namespace PFE.Users
 			// 
 			this.label2.AutoSize = true;
 			this.label2.ForeColor = System.Drawing.Color.Blue;
-			this.label2.Location = new System.Drawing.Point(444, 130);
+			this.label2.Location = new System.Drawing.Point(533, 178);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(75, 17);
 			this.label2.TabIndex = 1;
@@ -67,7 +67,7 @@ namespace PFE.Users
 			// 
 			this.label3.AutoSize = true;
 			this.label3.ForeColor = System.Drawing.Color.Blue;
-			this.label3.Location = new System.Drawing.Point(281, 130);
+			this.label3.Location = new System.Drawing.Point(370, 178);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(59, 17);
 			this.label3.TabIndex = 2;
@@ -77,7 +77,7 @@ namespace PFE.Users
 			// 
 			this.button1.BackColor = System.Drawing.Color.White;
 			this.button1.ForeColor = System.Drawing.Color.Blue;
-			this.button1.Location = new System.Drawing.Point(555, 68);
+			this.button1.Location = new System.Drawing.Point(722, 199);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(114, 34);
 			this.button1.TabIndex = 24;
@@ -87,21 +87,21 @@ namespace PFE.Users
 			// 
 			// lont
 			// 
-			this.lont.Location = new System.Drawing.Point(447, 163);
+			this.lont.Location = new System.Drawing.Point(536, 211);
 			this.lont.Name = "lont";
 			this.lont.Size = new System.Drawing.Size(100, 22);
 			this.lont.TabIndex = 25;
 			// 
 			// lat
 			// 
-			this.lat.Location = new System.Drawing.Point(284, 163);
+			this.lat.Location = new System.Drawing.Point(373, 211);
 			this.lat.Name = "lat";
 			this.lat.Size = new System.Drawing.Size(100, 22);
 			this.lat.TabIndex = 26;
 			// 
 			// name
 			// 
-			this.name.Location = new System.Drawing.Point(138, 163);
+			this.name.Location = new System.Drawing.Point(227, 211);
 			this.name.Name = "name";
 			this.name.Size = new System.Drawing.Size(100, 22);
 			this.name.TabIndex = 27;
@@ -114,7 +114,7 @@ namespace PFE.Users
             this.latt,
             this.lontt});
 			this.listView1.HideSelection = false;
-			this.listView1.Location = new System.Drawing.Point(63, 222);
+			this.listView1.Location = new System.Drawing.Point(200, 265);
 			this.listView1.Name = "listView1";
 			this.listView1.Size = new System.Drawing.Size(636, 202);
 			this.listView1.TabIndex = 28;
@@ -146,7 +146,7 @@ namespace PFE.Users
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.White;
-			this.ClientSize = new System.Drawing.Size(800, 450);
+			this.ClientSize = new System.Drawing.Size(1009, 627);
 			this.Controls.Add(this.listView1);
 			this.Controls.Add(this.name);
 			this.Controls.Add(this.lat);

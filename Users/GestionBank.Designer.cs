@@ -44,7 +44,7 @@ namespace PFE.Users
 			// 
 			this.button1.BackColor = System.Drawing.Color.White;
 			this.button1.ForeColor = System.Drawing.Color.Blue;
-			this.button1.Location = new System.Drawing.Point(618, 71);
+			this.button1.Location = new System.Drawing.Point(701, 158);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(114, 23);
 			this.button1.TabIndex = 23;
@@ -54,7 +54,7 @@ namespace PFE.Users
 			// 
 			// namee
 			// 
-			this.namee.Location = new System.Drawing.Point(174, 71);
+			this.namee.Location = new System.Drawing.Point(257, 158);
 			this.namee.Name = "namee";
 			this.namee.Size = new System.Drawing.Size(100, 22);
 			this.namee.TabIndex = 22;
@@ -62,7 +62,7 @@ namespace PFE.Users
 			// label5
 			// 
 			this.label5.AutoSize = true;
-			this.label5.Location = new System.Drawing.Point(195, 29);
+			this.label5.Location = new System.Drawing.Point(278, 116);
 			this.label5.Name = "label5";
 			this.label5.Size = new System.Drawing.Size(45, 17);
 			this.label5.TabIndex = 17;
@@ -71,7 +71,7 @@ namespace PFE.Users
 			// label4
 			// 
 			this.label4.AutoSize = true;
-			this.label4.Location = new System.Drawing.Point(398, 29);
+			this.label4.Location = new System.Drawing.Point(481, 116);
 			this.label4.Name = "label4";
 			this.label4.Size = new System.Drawing.Size(58, 17);
 			this.label4.TabIndex = 16;
@@ -84,7 +84,7 @@ namespace PFE.Users
             this.Name,
             this.Number});
 			this.listView1.HideSelection = false;
-			this.listView1.Location = new System.Drawing.Point(32, 181);
+			this.listView1.Location = new System.Drawing.Point(149, 220);
 			this.listView1.Name = "listView1";
 			this.listView1.Size = new System.Drawing.Size(736, 242);
 			this.listView1.TabIndex = 12;
@@ -109,7 +109,7 @@ namespace PFE.Users
 			// 
 			// num
 			// 
-			this.num.Location = new System.Drawing.Point(382, 71);
+			this.num.Location = new System.Drawing.Point(465, 158);
 			this.num.Name = "num";
 			this.num.Size = new System.Drawing.Size(100, 22);
 			this.num.TabIndex = 24;
@@ -119,7 +119,7 @@ namespace PFE.Users
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.White;
-			this.ClientSize = new System.Drawing.Size(800, 450);
+			this.ClientSize = new System.Drawing.Size(1025, 562);
 			this.Controls.Add(this.num);
 			this.Controls.Add(this.button1);
 			this.Controls.Add(this.namee);
@@ -127,7 +127,7 @@ namespace PFE.Users
 			this.Controls.Add(this.label4);
 			this.Controls.Add(this.listView1);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-			//this.Name = "GestionBank";
+			
 			this.Text = "GestionBank";
 			this.Load += new System.EventHandler(this.GestionBank_Load);
 			this.ResumeLayout(false);

@@ -39,6 +39,7 @@ namespace PFE.Admin
 			this.Namee = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.Typpe = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.label3 = new System.Windows.Forms.Label();
+			this.update = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
 			// button1
@@ -139,12 +140,26 @@ namespace PFE.Admin
 			this.label3.TabIndex = 7;
 			this.label3.Text = "Gestion Of Attribute";
 			// 
+			// update
+			// 
+			this.update.BackColor = System.Drawing.Color.White;
+			this.update.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.update.ForeColor = System.Drawing.Color.Blue;
+			this.update.Location = new System.Drawing.Point(835, 603);
+			this.update.Name = "update";
+			this.update.Size = new System.Drawing.Size(115, 32);
+			this.update.TabIndex = 13;
+			this.update.Text = "Update";
+			this.update.UseVisualStyleBackColor = false;
+			this.update.Click += new System.EventHandler(this.update_Click);
+			// 
 			// Gestionattribute
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.White;
-			this.ClientSize = new System.Drawing.Size(1082, 598);
+			this.ClientSize = new System.Drawing.Size(1082, 719);
+			this.Controls.Add(this.update);
 			this.Controls.Add(this.label3);
 			this.Controls.Add(this.listView1);
 			this.Controls.Add(this.label1);
@@ -174,5 +189,6 @@ namespace PFE.Admin
 		private System.Windows.Forms.ColumnHeader Namee;
 		private System.Windows.Forms.ColumnHeader Typpe;
 		private System.Windows.Forms.Label label3;
+		private System.Windows.Forms.Button update;
 	}
 }

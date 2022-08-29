@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,11 +19,13 @@ namespace PFE.Users
 		public List<string> listtstring = new List<string>();
 		public List<string> listtColumnName = new List<string>();
 		public List<Adress> listtAdress = new List<Adress>();
-
+		public string FileName;
 		public List<Labele> listabel = new List<Labele>();
 
 		public List<Attributee> listt = new List<Attributee>();
 		public long idContact { get; set; }
+		public long idCategorie { get; set; }
+
 		public long idSeler { get; set; }
 		public long idBank { get; set; }
 		public long idAdress { get; set; }
@@ -35,11 +38,8 @@ namespace PFE.Users
 
 			InitializeComponent();
 
-			//this.paneldynamique.Controls.Add(new DateTimePicker());
-			 panelcontact.Visible = true;
-		 	panel2seller.Visible = true;
-			bankacount.Visible = false;
-			soci.Checked = true;
+			FileName = "";
+ 
 			GetAttrubu();
 			GetColumnAndData();
 			//GetValueDataClumn();
@@ -72,7 +72,10 @@ namespace PFE.Users
 				reader.Close();
 				cmd.Dispose();
 				con.Close();
-				foreach (Adress adress in listtAdress)
+				List<Adress> listtAdress2 = new List<Adress>();
+				listtAdress2 = listtAdress.GroupBy(add => add.Name).Select(x => x.First()).ToList();
+ 
+				foreach (Adress adress in listtAdress2)
 				{
 					this.adress.Items.Add(adress.Name);
 
@@ -111,8 +114,10 @@ namespace PFE.Users
 				reader.Close();
 				cmd.Dispose();
 				con.Close();
+				List<Labele> listabel2 = new List<Labele>();
+				listabel2=listabel.GroupBy(add=>add.name).Select(x => x.First()).ToList();
 				
-			foreach (Labele labele in listabel)
+				foreach (Labele labele in listabel2)
 				{
 					this.label.Items.Add(labele.name);
 
@@ -350,9 +355,7 @@ namespace PFE.Users
 		private void radioButton2_CheckedChanged(object sender, EventArgs e)
 		{
 			 
-			panelcontact.Visible = false;
-			panel2seller.Visible = false;
-			bankacount.Visible = true;
+
 		}
 
 		private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
@@ -389,9 +392,7 @@ namespace PFE.Users
 
 		private void soci_CheckedChanged(object sender, EventArgs e)
 		{
-			panelcontact.Visible = true;
-			panel2seller.Visible = true;
-			bankacount.Visible = false;
+
 		}
 
 		private void btnSave_Click(object sender, EventArgs e)
@@ -444,167 +445,9 @@ namespace PFE.Users
 				}
 			}
 
-			if (soci.Checked == true)
-			{
-				if (name_contact.Text != "" && adress_contact.Text != "" && email_contact.Text != "" && phone_contact.Text != "" && remark_contact.Text != "" && name_seller.Text != "" && adress_seller.Text != "" && email_seller.Text != "" && phone_seller.Text != "" && remark_seller.Text != "" && name.Text != "" && reference.Text != "" && create_date.Text != "" && cheksocity.Text != "" && phone.Text != "" && email.Text != "" && postal_code.Text != "" && website.Text != "" && fax.Text != "" && picture.Text != "" && job.Text != "" && note.Text != "" && !listtstring.Contains(""))
-				{
-					string sqlinsertinto = "";
-
-					foreach (Attributee line in listt)
-					{
-
-						sqlinsertinto = sqlinsertinto + line.Name + ',';
-
-
-
-					}
-					string sqlinsertvalue = "";
-					for (int i = 0; i < listtstring.Count; i++)
-					{
-						sqlinsertvalue = sqlinsertvalue + '?' + i + ',';
-					}
-					MySqlConnection con = new MySqlConnection("datasource= localhost; database=test;port=3306; username = root; password= 123456789CA*"); //open connection
-					con.Open();
-					string SqlCommandeContact = "INSERT INTO contact(name, adress, email,phone,remark) VALUES(?name,?adress,?email,?phone,?remark)";
-					string SqlCommandeSeler = "INSERT INTO seller(name, adress, email,phone,remark) VALUES(?name,?adress,?email,?phone,?remark)";
-
-					string SQLcommand = "INSERT INTO commercialpartner(name, refrence, create_date, chec_socity,phone,email,idcategory,idbank_account,postalcode,idLabel,website,fax,picture,idadress,JobPosition,note,idseller,idcontact," + sqlinsertinto.Remove(sqlinsertinto.Length - 1) + ") VALUES(?na, ?ref, ?crdate,?chek, ?ph,?em,?idcat,?idbank,?postcode,?idlabel,?website,?fax,?picture,?idadress,?jobpostion,?note,?idseller,?idcontact," + sqlinsertvalue.Remove(sqlinsertvalue.Length - 1) + ");";
-
-					string SqlCommandeAdress = "INSERT INTO adress(name, latitude, longtitude) VALUES(?name,?latitude,?longtitude)";
-					string SqlCommandeLabel = "INSERT INTO label(name, category, color) VALUES(?name,?category,?color)";
-
-					MySqlCommand Adress = new MySqlCommand(SqlCommandeAdress, con);
-
-					Adress.Parameters.Add(new MySqlParameter("?name", adress.Text));
-					Adress.Parameters.Add(new MySqlParameter("?latitude", "21"));
-					Adress.Parameters.Add(new MySqlParameter("?longtitude", "20"));
-
-					try
-					{
-
-						Adress.ExecuteNonQuery();
-						idAdress = Adress.LastInsertedId;
-					}
-					catch (Exception Ex)
-					{
-						MessageBox.Show(Ex.Message);
-					}
-					MySqlCommand Label = new MySqlCommand(SqlCommandeLabel, con);
-
-
-					Label.Parameters.Add(new MySqlParameter("?name", label.Text));
-					Label.Parameters.Add(new MySqlParameter("?category", "Societe"));
-					Label.Parameters.Add(new MySqlParameter("?color", "Red"));
-
-					try
-					{
-
-						Label.ExecuteNonQuery();
-						idLabel = Label.LastInsertedId;
-					}
-					catch (Exception Ex)
-					{
-						MessageBox.Show(Ex.Message);
-					}
-
-					//MessageBox.Show(SQLcommand);
-					MySqlCommand Contact = new MySqlCommand(SqlCommandeContact, con);
-					Contact.Parameters.Add(new MySqlParameter("?name", name_contact.Text));
-					Contact.Parameters.Add(new MySqlParameter("?adress", adress_contact.Text));
-					Contact.Parameters.Add(new MySqlParameter("?email", email_contact));
-					Contact.Parameters.Add(new MySqlParameter("?phone", phone_contact.Text));
-					Contact.Parameters.Add(new MySqlParameter("?remark", remark_contact.Text));
-					try
-					{
-
-						Contact.ExecuteNonQuery();
-						idContact = Contact.LastInsertedId;
-					}
-					catch (Exception Ex)
-					{
-						MessageBox.Show(Ex.Message);
-					}
-
-
-					MySqlCommand Seler = new MySqlCommand(SqlCommandeSeler, con);
-					Seler.Parameters.Add(new MySqlParameter("?name", name_seller.Text));
-					Seler.Parameters.Add(new MySqlParameter("?adress", adress_seller.Text));
-					Seler.Parameters.Add(new MySqlParameter("?email", email_seller.Text));
-					Seler.Parameters.Add(new MySqlParameter("?phone", phone_seller.Text));
-					Seler.Parameters.Add(new MySqlParameter("?remark", remark_seller.Text));
-
-					try
-					{
-
-
-						Seler.ExecuteNonQuery();
-						idSeler = Contact.LastInsertedId;
-					}
-					catch (Exception Ex)
-					{
-						MessageBox.Show(Ex.Message);
-					}
-					MySqlCommand bazaUkaz = new MySqlCommand(SQLcommand, con);
-
-					bazaUkaz.Parameters.Add(new MySqlParameter("?na", name.Text));
-					bazaUkaz.Parameters.Add(new MySqlParameter("?ref", reference.Text));
-					bazaUkaz.Parameters.Add(new MySqlParameter("?crdate", DateTime.Parse(create_date.Text)));
-					bazaUkaz.Parameters.Add(new MySqlParameter("?chek", cheksocity.Text));
-					bazaUkaz.Parameters.Add(new MySqlParameter("?ph", phone.Text));
-					bazaUkaz.Parameters.Add(new MySqlParameter("?em", email.Text));
-					bazaUkaz.Parameters.Add(new MySqlParameter("?idcat", 5));
-					bazaUkaz.Parameters.Add(new MySqlParameter("?idbank", 5));
-					bazaUkaz.Parameters.Add(new MySqlParameter("?postcode", postal_code.Text));
-					bazaUkaz.Parameters.Add(new MySqlParameter("?idlabel", idLabel));
-					bazaUkaz.Parameters.Add(new MySqlParameter("?website", website.Text));
-					bazaUkaz.Parameters.Add(new MySqlParameter("?fax", fax.Text));
-					bazaUkaz.Parameters.Add(new MySqlParameter("?picture", picture.Text));
-					bazaUkaz.Parameters.Add(new MySqlParameter("?idadress", idAdress));
-					bazaUkaz.Parameters.Add(new MySqlParameter("?jobpostion", job.Text));
-					bazaUkaz.Parameters.Add(new MySqlParameter("?note", note.Text));
-					bazaUkaz.Parameters.Add(new MySqlParameter("?idseller", idSeler));
-					bazaUkaz.Parameters.Add(new MySqlParameter("?idcontact", idContact));
-
-					for (int i = 0; i < listtstring.Count; i++)
-					{
-						if (listtstring[i].ToString().Contains("."))
-						{
-							bazaUkaz.Parameters.Add(new MySqlParameter("?" + i, Convert.ToDateTime(listtstring[i].ToString())));
-
-						}
-						else if (listtstring[i].ToString().Contains("!"))
-						{
-							bazaUkaz.Parameters.Add(new MySqlParameter("?" + i, Convert.ToInt32(listtstring[i].ToString().Substring(0, listtstring[i].ToString().Length - 1))));
-
-						}
-						else
-						{
-							bazaUkaz.Parameters.Add(new MySqlParameter("?" + i, listtstring[i].ToString()));
-
-						}
-					}
-					try
-					{
-
-						bazaUkaz.ExecuteNonQuery();
-						long id = bazaUkaz.LastInsertedId;
-						MessageBox.Show("Add successful");
  
-					}
-					catch (Exception Ex)
-					{
-						MessageBox.Show(Ex.Message);
-					}
-				}
-				else
-				{
-					MessageBox.Show("Please Write Data ");
-				}
-
-			}
-			else if (personne.Checked == true)
-			{
-				if (number_bank.Text != "" && name_banque.Text != "" && name.Text != "" && reference.Text != "" && create_date.Text != "" && cheksocity.Text != "" && phone.Text != "" && email.Text != "" && postal_code.Text != "" && website.Text != "" && fax.Text != "" && picture.Text != "" && job.Text != "" && note.Text != "" && !listtstring.Contains(""))
+	 
+				if ( number_bank.Text != "" && name_banque.Text != "" && name.Text != "" && reference.Text != "" && create_date.Text != "" && cheksocity.Text != "" && phone.Text != "" && email.Text != "" && postal_code.Text != "" && website.Text != "" && fax.Text != "" && FileName != "" && job.Text != "" &&  note.Text != "")
 				{
 					string sqlinsertinto = "";
 
@@ -625,11 +468,12 @@ namespace PFE.Users
 					con.Open();
 					string SqlCommandeBank = "INSERT INTO bank_account(number, name_bank) VALUES(?number,?name_bank)";
 
-					string SQLcommand = "INSERT INTO commercialpartner(name, refrence, create_date, chec_socity,phone,email,idcategory,idbank_account,postalcode,idLabel,website,fax,picture,idadress,JobPosition,note,idseller,idcontact," + sqlinsertinto.Remove(sqlinsertinto.Length - 1) + ") VALUES(?na, ?ref, ?crdate,?chek, ?ph,?em,?idcat,?idbank,?postcode,?idlabel,?website,?fax,?picture,?idadress,?jobpostion,?note,?idseller,?idcontact," + sqlinsertvalue.Remove(sqlinsertvalue.Length - 1) + ");";
+					string SQLcommand = "INSERT INTO commercialpartner(name, refrence, create_date, chec_socity,phone,email,idbank_account,postalcode,idLabel,website,fax,picture,idadress,JobPosition,note," + sqlinsertinto.Remove(sqlinsertinto.Length - 1) + ") VALUES(?na, ?ref, ?crdate,?chek, ?ph,?em,?idbank,?postcode,?idlabel,?website,?fax,?picture,?idadress,?jobpostion,?note," + sqlinsertvalue.Remove(sqlinsertvalue.Length - 1) + ");";
 
 					string SqlCommandeAdress = "INSERT INTO adress(name, latitude, longtitude) VALUES(?name,?latitude,?longtitude)";
 					string SqlCommandeLabel = "INSERT INTO label(name, category, color) VALUES(?name,?category,?color)";
-
+ 
+		 
 					MySqlCommand Adress = new MySqlCommand(SqlCommandeAdress, con);
 
 					Adress.Parameters.Add(new MySqlParameter("?name", adress.Text));
@@ -686,22 +530,35 @@ namespace PFE.Users
 
 					bazaUkaz.Parameters.Add(new MySqlParameter("?na", name.Text));
 					bazaUkaz.Parameters.Add(new MySqlParameter("?ref", reference.Text));
+					try { 
 					bazaUkaz.Parameters.Add(new MySqlParameter("?crdate", DateTime.Parse(create_date.Text)));
+					}catch(Exception ex)
+					{
+						MessageBox.Show(ex.Message);
+					}
 					bazaUkaz.Parameters.Add(new MySqlParameter("?chek", cheksocity.Text));
 					bazaUkaz.Parameters.Add(new MySqlParameter("?ph", phone.Text));
 					bazaUkaz.Parameters.Add(new MySqlParameter("?em", email.Text));
-					bazaUkaz.Parameters.Add(new MySqlParameter("?idcat", 5));
-					bazaUkaz.Parameters.Add(new MySqlParameter("?idbank", idBank));
+ 					bazaUkaz.Parameters.Add(new MySqlParameter("?idbank", idBank));
 					bazaUkaz.Parameters.Add(new MySqlParameter("?postcode", postal_code.Text));
 					bazaUkaz.Parameters.Add(new MySqlParameter("?idlabel", idLabel));
 					bazaUkaz.Parameters.Add(new MySqlParameter("?website", website.Text));
 					bazaUkaz.Parameters.Add(new MySqlParameter("?fax", fax.Text));
-					bazaUkaz.Parameters.Add(new MySqlParameter("?picture", picture.Text));
+					if (FileName == "")
+					{
+						bazaUkaz.Parameters.Add(new MySqlParameter("?picture", "img.png"));
+
+					}
+					else
+					{
+						bazaUkaz.Parameters.Add(new MySqlParameter("?picture", FileName));
+
+					}
+		 
 					bazaUkaz.Parameters.Add(new MySqlParameter("?idadress", idAdress));
 					bazaUkaz.Parameters.Add(new MySqlParameter("?jobpostion", job.Text));
 					bazaUkaz.Parameters.Add(new MySqlParameter("?note", note.Text));
-					bazaUkaz.Parameters.Add(new MySqlParameter("?idseller", idSeler));
-					bazaUkaz.Parameters.Add(new MySqlParameter("?idcontact", idContact));
+ 
 
 					for (int i = 0; i < listtstring.Count; i++)
 					{
@@ -712,8 +569,24 @@ namespace PFE.Users
 						}
 						else if(listtstring[i].ToString().Contains("!"))
 						{
-							bazaUkaz.Parameters.Add(new MySqlParameter("?" + i, Convert.ToInt32(listtstring[i].ToString().Substring(0, listtstring[i].ToString().Length-1))));
+							try
+							{
+								if(listtstring[i].ToString().Substring(0, listtstring[i].ToString().Length - 1)!="")
+								{
+									bazaUkaz.Parameters.Add(new MySqlParameter("?" + i, Convert.ToInt32(listtstring[i].ToString().Substring(0, listtstring[i].ToString().Length - 1))));
 
+								}
+								else
+								{
+									bazaUkaz.Parameters.Add(new MySqlParameter("?" + i,  null));
+
+								}
+
+							}
+							catch(Exception ex)
+							{
+								MessageBox.Show(ex.Message);
+							}
 						}
 						else
 						{
@@ -739,7 +612,7 @@ namespace PFE.Users
 				{
 					MessageBox.Show("Please Write Data ");
 				}
-			}
+			 
 		}
 
 		private void listView1_SelectedIndexChanged(object sender, EventArgs e)
@@ -792,6 +665,49 @@ namespace PFE.Users
 				}
 			}*/
 		}
+
+		private void picture_Click(object sender, EventArgs e)
+		{
+			try
+			{
+				OpenFileDialog dialog = new OpenFileDialog();
+				if (dialog.ShowDialog() == DialogResult.OK)
+				{
+					picture.ImageLocation = dialog.FileName.ToString();
+
+					string path = Path.Combine(@"images\");
+					if (!Directory.Exists(path))
+					{
+						Directory.CreateDirectory(path);
+					}
+
+					var filename = System.IO.Path.GetFileName(dialog.FileName);
+					path = path + filename;
+					File.Copy(dialog.FileName, path, true);
+					FileName = filename;
+				}
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show(ex.Message.ToString(), "Information");
+			}
+		}
+
+		private void label14_Click(object sender, EventArgs e)
+		{
+
+		}
+
+		private void website_TextChanged(object sender, EventArgs e)
+		{
+
+		}
+
+		private void label13_Click(object sender, EventArgs e)
+		{
+
+		}
+
 
 
 

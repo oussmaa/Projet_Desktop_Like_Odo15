@@ -37,9 +37,10 @@ namespace PFE.Users
 			System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
 			System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
 			this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-			this.chart2 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+			this.Client = new System.Windows.Forms.DataVisualization.Charting.Chart();
+			this.label1 = new System.Windows.Forms.Label();
 			((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.chart2)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.Client)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// chart1
@@ -48,7 +49,7 @@ namespace PFE.Users
 			this.chart1.ChartAreas.Add(chartArea1);
 			legend1.Name = "Legend1";
 			this.chart1.Legends.Add(legend1);
-			this.chart1.Location = new System.Drawing.Point(68, 61);
+			this.chart1.Location = new System.Drawing.Point(95, 35);
 			this.chart1.Name = "chart1";
 			this.chart1.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.None;
 			series1.ChartArea = "ChartArea1";
@@ -65,25 +66,36 @@ namespace PFE.Users
 			this.chart1.Titles.Add(title1);
 			this.chart1.Click += new System.EventHandler(this.chart1_Click);
 			// 
-			// chart2
+			// Client
 			// 
-			this.chart2.AccessibleRole = System.Windows.Forms.AccessibleRole.Alert;
+			this.Client.AccessibleRole = System.Windows.Forms.AccessibleRole.Alert;
 			chartArea2.Name = "ChartArea1";
-			this.chart2.ChartAreas.Add(chartArea2);
+			this.Client.ChartAreas.Add(chartArea2);
 			legend2.Name = "Legend1";
-			this.chart2.Legends.Add(legend2);
-			this.chart2.Location = new System.Drawing.Point(68, 457);
-			this.chart2.Name = "chart2";
-			this.chart2.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Excel;
+			this.Client.Legends.Add(legend2);
+			this.Client.Location = new System.Drawing.Point(79, 417);
+			this.Client.Name = "Client";
+			this.Client.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.None;
 			series2.ChartArea = "ChartArea1";
 			series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
 			series2.Legend = "Legend1";
-			series2.Name = "Series1";
-			this.chart2.Series.Add(series2);
-			this.chart2.Size = new System.Drawing.Size(837, 300);
-			this.chart2.TabIndex = 1;
-			this.chart2.Text = "chart2";
-			this.chart2.Click += new System.EventHandler(this.chart2_Click);
+			series2.Name = "Client";
+			this.Client.Series.Add(series2);
+			this.Client.Size = new System.Drawing.Size(837, 300);
+			this.Client.TabIndex = 1;
+			this.Client.Text = "Nomber de Client";
+			this.Client.Click += new System.EventHandler(this.chart2_Click);
+			// 
+			// label1
+			// 
+			this.label1.AutoSize = true;
+			this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label1.Location = new System.Drawing.Point(383, 372);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(186, 18);
+			this.label1.TabIndex = 3;
+			this.label1.Text = "Number Of Clients By Date";
+			this.label1.Click += new System.EventHandler(this.label1_Click);
 			// 
 			// Dashbored
 			// 
@@ -91,21 +103,24 @@ namespace PFE.Users
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.White;
 			this.ClientSize = new System.Drawing.Size(992, 859);
-			this.Controls.Add(this.chart2);
+			this.Controls.Add(this.label1);
+			this.Controls.Add(this.Client);
 			this.Controls.Add(this.chart1);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
 			this.Name = "Dashbored";
 			this.Text = "Dashbored";
 			this.Load += new System.EventHandler(this.Dashbored_Load);
 			((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.chart2)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.Client)).EndInit();
 			this.ResumeLayout(false);
+			this.PerformLayout();
 
 		}
 
 		#endregion
 
 		private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
-		private System.Windows.Forms.DataVisualization.Charting.Chart chart2;
+		private System.Windows.Forms.DataVisualization.Charting.Chart Client;
+		private System.Windows.Forms.Label label1;
 	}
 }
